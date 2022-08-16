@@ -1,3 +1,12 @@
+
+
+chainLink的Oracle和jobId的获取是通过对应的Data Provider Nodes中获取
+
+每个请求都需要支付相应的linkToken，所以请求的合约需要存入一定量的LinkToken
+
+
+
+
 <br/>
 <p align="center">
 <a href="https://chain.link" target="_blank">
