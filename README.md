@@ -1,7 +1,7 @@
 
 
 chainLink的Oracle和jobId的获取是通过对应的Data Provider Nodes中获取
-
+![99d8fb5d84e1662fad4166dd5d5fc9d](https://user-images.githubusercontent.com/100255425/184827303-77c128ab-ce29-456c-86e8-7500d743381d.jpg)
 每个请求都需要支付相应的linkToken，所以请求的合约需要存入一定量的LinkToken
 
 
