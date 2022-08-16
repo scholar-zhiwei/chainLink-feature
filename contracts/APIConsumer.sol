@@ -9,7 +9,8 @@ import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";
  */
 contract APIConsumer is ChainlinkClient {
   using Chainlink for Chainlink.Request;
-
+  
+  //结果
   uint256 public volume;
   address private immutable oracle;
   bytes32 private immutable jobId;
@@ -30,6 +31,7 @@ contract APIConsumer is ChainlinkClient {
    * Job ID: 6b88e0402e5d415eb946e528b8e0c7ba
    * Fee: 0.1 LINK
    */
+  // Oracle 地址、_jobId 和  为job收取的 LINK 费用的linkToken
   constructor(
     address _oracle,
     bytes32 _jobId,
@@ -53,6 +55,7 @@ contract APIConsumer is ChainlinkClient {
    * @return requestId - id of the request
    */
   function requestVolumeData() public returns (bytes32 requestId) {
+    //获取到结果后会直接调用fulfill方法将结果存入volume
     Chainlink.Request memory request = buildChainlinkRequest(
       jobId,
       address(this),
@@ -73,9 +76,12 @@ contract APIConsumer is ChainlinkClient {
     //   }
     //  }
     // request.add("path", "RAW.ETH.USD.VOLUME24HOUR"); // Chainlink nodes prior to 1.0.0 support this format
+
+    //需要获取什么数据
     request.add("path", "RAW,ETH,USD,VOLUME24HOUR"); // Chainlink nodes 1.0.0 and later support this format
 
     // Multiply the result by 1000000000000000000 to remove decimals
+    //通过将结果乘以timesAmount来去除小数点
     int256 timesAmount = 10**18;
     request.addInt("times", timesAmount);
 
